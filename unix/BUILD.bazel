@@ -1,31 +1,8 @@
 load("@io_bazel_rules_go//go:def.bzl", "cgo_library", "go_library", "go_test")
 
-cgo_library(
-    name = "cgo_default_library",
+go_library(
+    name = "go_default_library",
     srcs = [
-        "asm_darwin_386.s",
-        "asm_darwin_amd64.s",
-        "asm_darwin_arm.s",
-        "asm_darwin_arm64.s",
-        "asm_dragonfly_amd64.s",
-        "asm_freebsd_386.s",
-        "asm_freebsd_amd64.s",
-        "asm_freebsd_arm.s",
-        "asm_linux_386.s",
-        "asm_linux_amd64.s",
-        "asm_linux_arm.s",
-        "asm_linux_arm64.s",
-        "asm_linux_mips64x.s",
-        "asm_linux_mipsx.s",
-        "asm_linux_ppc64x.s",
-        "asm_linux_s390x.s",
-        "asm_netbsd_386.s",
-        "asm_netbsd_amd64.s",
-        "asm_netbsd_arm.s",
-        "asm_openbsd_386.s",
-        "asm_openbsd_amd64.s",
-        "asm_solaris_amd64.s",
-        "gccgo_c.c",
         "types_darwin.go",
         "types_dragonfly.go",
         "types_freebsd.go",
@@ -33,13 +10,6 @@ cgo_library(
         "types_netbsd.go",
         "types_openbsd.go",
         "types_solaris.go",
-    ],
-    visibility = ["//visibility:private"],
-)
-
-go_library(
-    name = "go_default_library",
-    srcs = [
         "asm_darwin_amd64.s",
         "constants.go",
         "dirent.go",
@@ -49,36 +19,26 @@ go_library(
         "flock.go",
         "race0.go",
         "sockcmsg_unix.go",
+        "sockcmsg_linux.go",
         "str.go",
         "syscall.go",
         "syscall_bsd.go",
+        "syscall_linux.go",
         "syscall_darwin.go",
         "syscall_darwin_amd64.go",
+        "syscall_linux_amd64.go",
         "syscall_linux_amd64_gc.go",
         "syscall_unix.go",
         "syscall_unix_gc.go",
+        "pagesize_unix.go",
         "zerrors_darwin_amd64.go",
         "zsyscall_darwin_amd64.go",
         "zsysnum_darwin_amd64.go",
         "ztypes_darwin_amd64.go",
+        "zerrors_linux_amd64.go",
+        "zsyscall_linux_amd64.go",
+        "zsysnum_linux_amd64.go",
+        "ztypes_linux_amd64.go",
     ],
     visibility = ["//visibility:public"],
-)
-
-go_test(
-    name = "go_default_test",
-    srcs = ["export_test.go"],
-    library = ":go_default_library",
-)
-
-go_test(
-    name = "go_default_xtest",
-    srcs = [
-        "creds_test.go",
-        "mmap_unix_test.go",
-        "syscall_bsd_test.go",
-        "syscall_test.go",
-        "syscall_unix_test.go",
-    ],
-    deps = [":go_default_library"],
 )
