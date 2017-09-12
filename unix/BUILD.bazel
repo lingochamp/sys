@@ -6,7 +6,6 @@ go_library(
         "types_darwin.go",
         "types_dragonfly.go",
         "types_freebsd.go",
-        "types_linux.go",
         "types_netbsd.go",
         "types_openbsd.go",
         "types_solaris.go",
